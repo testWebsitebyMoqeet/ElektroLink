@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Elektro-Link Göppingen – Ihr Elektriker seit 1947</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #E8A020;
+    --gold-light: #F5C355;
+    --gold-dark: #B07010;
+    --dark: #0F0F0F;
+    --dark2: #181818;
+    --dark3: #222222;
+    --dark4: #2C2C2C;
+    --text: #F0EDE6;
+    --text-muted: #9A9590;
+    --text-dim: #5A5550;
+    --white: #FDFCF8;
+    --border: rgba(232,160,32,0.15);
+    --border-light: rgba(240,237,230,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { background: var(--dark); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; width: 100%; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,15,15,0.92); backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 4vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; }
+  .nav-logo-mark {
+    width: 38px; height: 38px; background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--dark);
+    letter-spacing: 1px;
+  }
+  .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--text); }
+  .nav-logo-sub { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--dark); padding: 10px 22px;
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+  .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text); margin: 5px 0; transition: 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 100px 4vw 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      repeating-linear-gradient(90deg, rgba(232,160,32,0.03) 0, rgba(232,160,32,0.03) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(0deg, rgba(232,160,32,0.03) 0, rgba(232,160,32,0.03) 1px, transparent 1px, transparent 80px);
+  }
+  .hero-accent {
+    position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,160,32,0.08) 0%, transparent 70%);
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 720px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 0.5px solid var(--border); padding: 6px 14px;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px,8vw,100px); line-height: 0.95; letter-spacing: 2px; color: var(--text); margin-bottom: 8px; }
+  .hero-title span { color: var(--gold); }
+  .hero-subtitle { font-size: clamp(14px,2vw,18px); color: var(--text-muted); font-weight: 300; margin: 24px 0 40px; max-width: 520px; line-height: 1.8; }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--dark);
+    padding: 14px 32px; font-weight: 600; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    border: 0.5px solid rgba(232,160,32,0.4); color: var(--text-muted);
+    padding: 14px 32px; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 64px; padding-top: 40px;
+    border-top: 0.5px solid var(--border-light);
+  }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+  /* SECTION BASICS */
+  section { padding: 96px 4vw; }
+  .section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,5vw,60px); line-height: 1; letter-spacing: 2px; margin-bottom: 20px; }
+  .section-subtitle { font-size: 16px; color: var(--text-muted); max-width: 540px; line-height: 1.8; }
+  .divider { width: 40px; height: 2px; background: var(--gold); margin: 24px 0; }
+
+  /* ABOUT */
+  .about { background: var(--dark2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 64px; }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-frame {
+    aspect-ratio: 1; background: var(--dark3);
+    border: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 120px; color: rgba(232,160,32,0.07);
+    letter-spacing: -4px; overflow: hidden; position: relative;
+  }
+  .about-img-frame::after {
+    content: '⚡'; font-size: 180px; position: absolute;
+    opacity: 0.06; transform: rotate(-15deg);
+  }
+  .about-year-tag {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--gold); color: var(--dark);
+    padding: 16px 20px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px;
+  }
+  .about-points { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .about-point { display: flex; gap: 16px; align-items: flex-start; }
+  .about-point-icon { width: 32px; height: 32px; background: rgba(232,160,32,0.1); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+  .about-point-text h4 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .about-point-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1px; background: var(--border-light); margin-top: 64px; }
+  .service-card {
+    background: var(--dark); padding: 40px 32px;
+    transition: background 0.2s;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0;
+    background: var(--gold); transition: height 0.3s;
+  }
+  .service-card:hover { background: var(--dark2); }
+  .service-card:hover::before { height: 100%; }
+  .service-icon { font-size: 28px; margin-bottom: 20px; }
+  .service-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 12px; }
+  .service-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  .service-tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); border: 0.5px solid rgba(232,160,32,0.3); padding: 4px 10px; }
+
+  /* WHY US */
+  .why { background: var(--dark2); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 64px; }
+  .why-items { display: flex; flex-direction: column; gap: 0; }
+  .why-item {
+    padding: 28px 0; border-bottom: 0.5px solid var(--border-light);
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .why-item:first-child { border-top: 0.5px solid var(--border-light); }
+  .why-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: rgba(232,160,32,0.25); min-width: 40px; line-height: 1; }
+  .why-item h4 { font-weight: 500; font-size: 15px; margin-bottom: 6px; }
+  .why-item p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .why-cta-box {
+    background: var(--dark3); border: 0.5px solid var(--border);
+    padding: 40px 36px; position: sticky; top: 100px;
+  }
+  .why-cta-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; margin-bottom: 16px; }
+  .why-cta-box p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+  .contact-mini { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .contact-mini-item { display: flex; gap: 12px; align-items: center; font-size: 13px; }
+  .contact-mini-item span:first-child { color: var(--gold); font-size: 16px; }
+
+  /* CONTACT */
+  .contact-section { background: var(--dark); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; margin-top: 64px; align-items: start; }
+  .contact-info-item { display: flex; gap: 16px; margin-bottom: 32px; }
+  .contact-info-icon { width: 44px; height: 44px; background: rgba(232,160,32,0.08); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .contact-info-item h4 { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .contact-info-item p { font-size: 14px; color: var(--text-muted); }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+  .form-group input, .form-group textarea, .form-group select {
+    background: var(--dark3); border: 0.5px solid var(--border-light);
+    color: var(--text); padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+    outline: none; transition: border-color 0.2s; width: 100%;
+    appearance: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--dark3); }
+  .form-check { display: flex; gap: 12px; align-items: flex-start; font-size: 12px; color: var(--text-muted); }
+  .form-check input[type=checkbox] { margin-top: 3px; accent-color: var(--gold); flex-shrink: 0; }
+  .form-success { display: none; padding: 20px; background: rgba(29,158,117,0.1); border: 0.5px solid rgba(29,158,117,0.3); font-size: 14px; color: #5DCAA5; text-align: center; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark2); border-top: 0.5px solid var(--border);
+    padding: 48px 4vw 32px;
+  }
+  .footer-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 0.5px solid var(--border-light); }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--text-dim); letter-spacing: 1px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--text-dim); }
+  .footer-badge { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 1px; }
+
+  /* ==== ADMIN PANEL ==== */
+  #admin-panel {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: #111; overflow: auto;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .admin-sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 240px;
+    background: #0A0A0A; border-right: 0.5px solid rgba(232,160,32,0.15);
+    padding: 24px 0; display: flex; flex-direction: column;
+    z-index: 10;
+  }
+  .admin-logo { padding: 0 24px 24px; border-bottom: 0.5px solid rgba(255,255,255,0.06); margin-bottom: 24px; }
+  .admin-logo-mark { display: flex; align-items: center; gap: 10px; }
+  .admin-logo-mark .mark { width: 30px; height: 30px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: #000; }
+  .admin-logo-mark span { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #F0EDE6; }
+  .admin-logo p { font-size: 10px; color: #5A5550; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
+  .admin-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; }
+  .admin-nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; font-size: 13px; color: #5A5550;
+    cursor: pointer; transition: all 0.2s; border-radius: 4px;
+    border: none; background: none; text-align: left; width: 100%;
+  }
+  .admin-nav-item:hover { background: rgba(232,160,32,0.06); color: #9A9590; }
+  .admin-nav-item.active { background: rgba(232,160,32,0.1); color: var(--gold); }
+  .admin-nav-item .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+  .admin-badge { margin-left: auto; background: var(--gold); color: #000; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; min-width: 20px; text-align: center; }
+  .admin-footer-nav { padding: 12px; border-top: 0.5px solid rgba(255,255,255,0.06); margin-top: auto; }
+  .admin-content { margin-left: 240px; padding: 32px 36px; min-height: 100vh; }
+  .admin-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+  .admin-topbar h1 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: #F0EDE6; }
+  .admin-topbar-right { display: flex; gap: 12px; align-items: center; }
+  .admin-btn {
+    padding: 8px 18px; font-size: 12px; font-weight: 500; letter-spacing: 1px; cursor: pointer;
+    transition: 0.2s; border: none;
+  }
+  .admin-btn-gold { background: var(--gold); color: #000; }
+  .admin-btn-gold:hover { background: var(--gold-light); }
+  .admin-btn-outline { background: transparent; border: 0.5px solid rgba(232,160,32,0.3); color: var(--gold); }
+  .admin-btn-outline:hover { border-color: var(--gold); }
+  .admin-btn-danger { background: rgba(226,75,74,0.15); border: 0.5px solid rgba(226,75,74,0.3); color: #E24B4A; font-size: 11px; padding: 6px 12px; }
+  .admin-btn-danger:hover { background: rgba(226,75,74,0.25); }
+  .admin-btn-sm { padding: 6px 12px; font-size: 11px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 32px; }
+  .stat-card {
+    background: #161616; border: 0.5px solid rgba(255,255,255,0.06);
+    padding: 20px 24px; border-radius: 4px;
+  }
+  .stat-card-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #5A5550; margin-bottom: 8px; }
+  .stat-card-value { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #F0EDE6; line-height: 1; }
+  .stat-card-sub { font-size: 12px; color: var(--gold); margin-top: 4px; }
+  .stat-card.gold { border-color: rgba(232,160,32,0.2); }
+  .stat-card.gold .stat-card-value { color: var(--gold); }
+  .admin-section { background: #161616; border: 0.5px solid rgba(255,255,255,0.06); border-radius: 4px; margin-bottom: 24px; overflow: hidden; }
+  .admin-section-header { padding: 16px 24px; border-bottom: 0.5px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .admin-section-header h2 { font-size: 14px; font-weight: 500; color: #F0EDE6; letter-spacing: 0.5px; }
+  .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .admin-table th { text-align: left; padding: 12px 24px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #5A5550; font-weight: 500; border-bottom: 0.5px solid rgba(255,255,255,0.04); background: #121212; }
+  .admin-table td { padding: 14px 24px; border-bottom: 0.5px solid rgba(255,255,255,0.03); color: #9A9590; vertical-align: middle; }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .admin-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .admin-table td:first-child { color: #F0EDE6; }
+  .status-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 2px; font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .status-new { background: rgba(232,160,32,0.12); color: var(--gold); border: 0.5px solid rgba(232,160,32,0.2); }
+  .status-read { background: rgba(93,202,165,0.1); color: #5DCAA5; border: 0.5px solid rgba(93,202,165,0.2); }
+  .status-replied { background: rgba(55,138,221,0.1); color: #85B7EB; border: 0.5px solid rgba(55,138,221,0.2); }
+  .status-pending { background: rgba(239,159,39,0.1); color: #EF9F27; border: 0.5px solid rgba(239,159,39,0.2); }
+  .status-done { background: rgba(99,153,34,0.1); color: #97C459; border: 0.5px solid rgba(99,153,34,0.2); }
+  .empty-state { padding: 48px 24px; text-align: center; color: #5A5550; font-size: 13px; }
+  .tab-bar { display: flex; border-bottom: 0.5px solid rgba(255,255,255,0.06); padding: 0 24px; }
+  .tab-btn { padding: 12px 0; margin-right: 28px; font-size: 13px; color: #5A5550; cursor: pointer; border-bottom: 2px solid transparent; transition: 0.2s; background: none; border-left: none; border-right: none; border-top: none; }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .detail-modal {
+    display: none; position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .detail-modal.open { display: flex; }
+  .detail-box {
+    background: #161616; border: 0.5px solid rgba(232,160,32,0.2);
+    width: 100%; max-width: 540px; padding: 32px; border-radius: 4px;
+    position: relative;
+  }
+  .detail-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 20px; color: #F0EDE6; }
+  .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 0.5px solid rgba(255,255,255,0.04); font-size: 13px; }
+  .detail-row:last-of-type { border-bottom: none; }
+  .detail-row span:first-child { color: #5A5550; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  .detail-row span:last-child { color: #F0EDE6; text-align: right; max-width: 60%; }
+  .detail-msg { margin: 16px 0; padding: 16px; background: #0F0F0F; font-size: 13px; color: #9A9590; line-height: 1.7; border-left: 2px solid var(--gold); }
+  .close-btn { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #5A5550; font-size: 20px; cursor: pointer; padding: 4px 8px; }
+  .close-btn:hover { color: #F0EDE6; }
+  .filter-bar { display: flex; gap: 12px; padding: 16px 24px; align-items: center; flex-wrap: wrap; border-bottom: 0.5px solid rgba(255,255,255,0.04); }
+  .filter-bar select, .filter-bar input {
+    background: #0F0F0F; border: 0.5px solid rgba(255,255,255,0.08);
+    color: #9A9590; padding: 7px 12px; font-size: 12px; outline: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .filter-bar input { flex: 1; min-width: 180px; }
+  .admin-page { display: none; }
+  .admin-page.active { display: block; }
+  .notification {
+    position: fixed; bottom: 24px; right: 24px; z-index: 400;
+    background: var(--gold); color: #000; padding: 12px 20px; font-size: 13px; font-weight: 500;
+    transform: translateY(100px); opacity: 0; transition: 0.3s;
+    pointer-events: none;
+  }
+  .notification.show { transform: translateY(0); opacity: 1; }
+  .admin-login-screen {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: #0A0A0A;
+  }
+  .login-box {
+    background: #161616; border: 0.5px solid rgba(232,160,32,0.2);
+    padding: 48px; width: 380px;
+  }
+  .login-box .mark { width: 48px; height: 48px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #000; margin: 0 auto 24px; }
+  .login-box h2 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; text-align: center; margin-bottom: 8px; color: #F0EDE6; }
+  .login-box p { font-size: 12px; color: #5A5550; text-align: center; margin-bottom: 32px; letter-spacing: 1px; }
+  .login-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .login-field label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #5A5550; }
+  .login-field input { background: #0F0F0F; border: 0.5px solid rgba(255,255,255,0.08); color: #F0EDE6; padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; }
+  .login-field input:focus { border-color: var(--gold); }
+  .login-btn { width: 100%; background: var(--gold); color: #000; padding: 13px; font-weight: 600; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer; margin-top: 8px; }
+  .login-btn:hover { background: var(--gold-light); }
+  .login-error { font-size: 12px; color: #E24B4A; text-align: center; margin-top: 12px; display: none; }
+  #admin-main { display: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .admin-sidebar { transform: translateX(-100%); transition: 0.3s; }
+    .admin-sidebar.open { transform: translateX(0); }
+    .admin-content { margin-left: 0; }
+    .hero-stats { flex-wrap: wrap; gap: 24px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PUBLIC WEBSITE ==================== -->
+<div id="public-site">
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">EL</div>
+    <div>
+      <div class="nav-logo-text">Elektro-Link</div>
+      <div class="nav-logo-sub">Göppingen · Seit 1947</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#about">Über uns</a>
+    <a href="#services">Leistungen</a>
+    <a href="#why">Vorteile</a>
+    <a href="#contact">Kontakt</a>
+    <a href="#contact" class="nav-cta">Anfragen</a>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Ihr Elektriker in Göppingen</div>
+    <h1 class="hero-title">ELEKTRO<br/><span>LINK</span></h1>
+    <p class="hero-subtitle">Seit 1947 Ihr vertrauenswürdiger Partner für Elektroinstallationen, Photovoltaik, E-Mobilität und moderne Energielösungen in Göppingen und Umgebung.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Jetzt Anfragen</a>
+      <a href="#services" class="btn-outline">Unsere Leistungen</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">78+</div>
+        <div class="stat-label">Jahre Erfahrung</div>
+      </div>
+      <div>
+        <div class="stat-num">1947</div>
+        <div class="stat-label">Gegründet</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Kundenzufriedenheit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">Über Elektro-Link</div>
+  <h2 class="section-title">IHR PARTNER FÜR<br/>ELEKTRISCHE LÖSUNGEN</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">Qualität und Zuverlässigkeit in jedem Projekt – seit über sieben Jahrzehnten.</p>
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-img-frame">EL</div>
+      <div class="about-year-tag">SEIT 1947<br/>GÖPPINGEN</div>
+    </div>
+    <div>
+      <p style="font-size:15px;color:var(--text-muted);line-height:1.85;margin-bottom:32px;">
+        Bei Elektro-Link stehen Qualität und Kundenzufriedenheit an erster Stelle. Unser Team aus erfahrenen Elektrikern sorgt dafür, dass alle Arbeiten sicher und effizient ausgeführt werden. Wir legen Wert auf innovative Lösungen und modernste Technik.
+      </p>
+      <div class="about-points">
+        <div class="about-point">
+          <div class="about-point-icon">⚡</div>
+          <div class="about-point-text">
+            <h4>Erfahrene Fachkräfte</h4>
+            <p>Unser Team verfügt über jahrelange Expertise in allen Bereichen der Elektrotechnik.</p>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="about-point-icon">🔒</div>
+          <div class="about-point-text">
+            <h4>Sicherheit & Qualität</h4>
+            <p>Alle Arbeiten werden nach höchsten Sicherheitsstandards und geltenden Normen ausgeführt.</p>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="about-point-icon">🌱</div>
+          <div class="about-point-text">
+            <h4>Nachhaltige Lösungen</h4>
+            <p>Energieeffiziente Technologien für eine umweltfreundliche und kostenoptimierte Zukunft.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background:var(--dark);">
+  <div class="section-label">Leistungen</div>
+  <h2 class="section-title">UNSERE DIENSTLEISTUNGEN</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">Von klassischer Elektroinstallation bis hin zu Photovoltaik und E-Mobilität – wir bieten Ihnen das komplette Spektrum moderner Elektrotechnik.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏗️</div>
+      <h3>Elektroinstallation</h3>
+      <p>Neubauten, Umbauten und Renovierungen – wir führen sämtliche Elektroinstallationen für Privat und Gewerbe durch.</p>
+      <div class="service-tags">
+        <span class="tag">Neubau</span><span class="tag">Sanierung</span><span class="tag">Smart Home</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">☀️</div>
+      <h3>Photovoltaik</h3>
+      <p>Maßgeschneiderte PV-Anlagen für Privat- und Gewerbekunden – von der Planung bis zur schlüsselfertigen Inbetriebnahme.</p>
+      <div class="service-tags">
+        <span class="tag">Privat</span><span class="tag">Gewerbe</span><span class="tag">Batteriespeicher</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔋</div>
+      <h3>E-Mobilität</h3>
+      <p>Wallboxen und gewerbliche Ladeinfrastruktur – wir installieren Ihre Ladelösung sicher und zuverlässig.</p>
+      <div class="service-tags">
+        <span class="tag">Wallbox</span><span class="tag">Lastmanagement</span><span class="tag">Fuhrpark</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Zähler & Schaltanlagen</h3>
+      <p>Intelligente Mess- und Schaltanlagen nach EnWG §14a – gesetzeskonform, zukunftssicher, smart-grid-fähig.</p>
+      <div class="service-tags">
+        <span class="tag">§14a EnWG</span><span class="tag">Smart Meter</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📡</div>
+      <h3>Netzwerk & Kommunikation</h3>
+      <p>EDV-Netzwerke, SAT-Anlagen, Kabelfernsehanlagen und professionelle Antennentechnik für zuverlässige Verbindungen.</p>
+      <div class="service-tags">
+        <span class="tag">EDV</span><span class="tag">SAT</span><span class="tag">TV-Kabel</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💡</div>
+      <h3>Beleuchtungslösungen</h3>
+      <p>Effiziente LED-Konzepte für Wohnräume, Büros und Industrie – Innen- und Außenbeleuchtung nach Maß.</p>
+      <div class="service-tags">
+        <span class="tag">LED</span><span class="tag">Außenbeleuchtung</span><span class="tag">Planung</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-label">Warum Elektro-Link</div>
+  <h2 class="section-title">IHR ZUVERLÄSSIGER<br/>PARTNER</h2>
+  <div class="divider"></div>
+  <div class="why-grid">
+    <div class="why-items">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div>
+          <h4>Über 78 Jahre Erfahrung</h4>
+          <p>Seit der Gründung 1947 in Göppingen betreuen wir Privat- und Gewerbekunden mit gleichbleibend hoher Qualität.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div>
+          <h4>Komplettlösungen aus einer Hand</h4>
+          <p>Von der Planung über die Montage bis zur Wartung – ein Ansprechpartner für alle Ihre elektrischen Bedürfnisse.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div>
+          <h4>Energieeffizienz & Nachhaltigkeit</h4>
+          <p>Unsere Lösungen helfen Ihnen, langfristig Energiekosten zu senken und umweltbewusst zu wirtschaften.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <div>
+          <h4>Regionaler Vertrauenspartner</h4>
+          <p>Als Göppinger Betrieb kennen wir die Region und stehen Ihnen schnell und persönlich zur Verfügung.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="why-cta-box">
+        <h3>KONTAKTIEREN SIE UNS DIREKT</h3>
+        <p>Haben Sie Fragen oder möchten ein unverbindliches Angebot? Wir freuen uns auf Ihre Nachricht.</p>
+        <div class="contact-mini">
+          <div class="contact-mini-item">
+            <span>📞</span>
+            <div>
+              <div style="font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Telefon</div>
+              <div style="font-size:14px;color:var(--text);">07161 74228</div>
+            </div>
+          </div>
+          <div class="contact-mini-item">
+            <span>📱</span>
+            <div>
+              <div style="font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Mobil</div>
+              <div style="font-size:14px;color:var(--text);">+49 151 29451034</div>
+            </div>
+          </div>
+          <div class="contact-mini-item">
+            <span>✉️</span>
+            <div>
+              <div style="font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">E-Mail</div>
+              <div style="font-size:14px;color:var(--text);">info@linkelektro.de</div>
+            </div>
+          </div>
+          <div class="contact-mini-item">
+            <span>📍</span>
+            <div>
+              <div style="font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;">Adresse</div>
+              <div style="font-size:14px;color:var(--text);">Robert-Bosch-Str. 7<br/>73037 Göppingen</div>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary" style="display:inline-block;font-size:12px;">Formular ausfüllen ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">Kontakt</div>
+  <h2 class="section-title">JETZT ANFRAGEN</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">Füllen Sie das Formular aus – wir melden uns schnellstmöglich bei Ihnen.</p>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📞</div>
+        <div>
+          <h4>Telefon</h4>
+          <p>07161 74228</p>
+          <p>+49 151 29451034</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">✉️</div>
+        <div>
+          <h4>E-Mail</h4>
+          <p>info@linkelektro.de</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📍</div>
+        <div>
+          <h4>Adresse</h4>
+          <p>Robert-Bosch-Str. 7<br/>73037 Göppingen<br/>Baden-Württemberg</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">🕐</div>
+        <div>
+          <h4>Öffnungszeiten</h4>
+          <p>Mo–Fr: 07:00 – 17:00 Uhr<br/>Sa: Nach Vereinbarung</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" onsubmit="submitContactForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Vorname *</label>
+            <input type="text" name="vorname" required placeholder="Max"/>
+          </div>
+          <div class="form-group">
+            <label>Nachname *</label>
+            <input type="text" name="nachname" required placeholder="Mustermann"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>E-Mail *</label>
+            <input type="email" name="email" required placeholder="max@beispiel.de"/>
+          </div>
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" name="telefon" placeholder="07161 123456"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Dienstleistung</label>
+          <select name="service">
+            <option value="">Bitte wählen...</option>
+            <option>Elektroinstallation</option>
+            <option>Photovoltaik</option>
+            <option>E-Mobilität / Wallbox</option>
+            <option>Zähler & Schaltanlagen</option>
+            <option>Netzwerk & Kommunikation</option>
+            <option>Beleuchtungslösungen</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Ihre Nachricht *</label>
+          <textarea name="nachricht" required placeholder="Beschreiben Sie kurz Ihr Anliegen..."></textarea>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="dsgvo" required/>
+          <label for="dsgvo" style="cursor:pointer;">Ich stimme zu, dass meine Daten zum Zwecke der Kontaktaufnahme gespeichert und verarbeitet werden. Mir ist bekannt, dass ich meine Einwilligung jederzeit widerrufen kann. *</label>
+        </div>
+        <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Nachricht absenden →</button>
+        <div class="form-success" id="form-success">✓ Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze!</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">EL</div>
+      <div>
+        <div class="nav-logo-text">Elektro-Link</div>
+        <div class="nav-logo-sub">Göppingen · Seit 1947</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#about">Über uns</a>
+      <a href="#services">Leistungen</a>
+      <a href="#contact">Kontakt</a>
+      <a href="#" onclick="showImprint()">Impressum</a>
+      <a href="#" onclick="showPrivacy()">Datenschutz</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Elektro-Link Göppingen. Alle Rechte vorbehalten.</div>
+    <div class="footer-badge">Robert-Bosch-Str. 7 · 73037 Göppingen · 07161 74228</div>
+  </div>
+</footer>
+
+</div><!-- end public-site -->
+
+<!-- ==================== ADMIN PANEL ==================== -->
+<div id="admin-panel">
+
+  <!-- LOGIN -->
+  <div class="admin-login-screen" id="admin-login">
+    <div class="login-box">
+      <div class="mark">EL</div>
+      <h2>ADMIN PANEL</h2>
+      <p>ELEKTRO-LINK GÖPPINGEN</p>
+      <div class="login-field">
+        <label>Benutzername</label>
+        <input type="text" id="login-user" placeholder="admin" autocomplete="username"/>
+      </div>
+      <div class="login-field">
+        <label>Passwort</label>
+        <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
+      </div>
+      <button class="login-btn" onclick="doLogin()">Anmelden</button>
+      <p class="login-error" id="login-error">Ungültige Anmeldedaten</p>
+      <p style="font-size:11px;color:#5A5550;text-align:center;margin-top:20px;">Demo: admin / admin123</p>
+    </div>
+  </div>
+
+  <!-- MAIN ADMIN -->
+  <div id="admin-main">
+    <div class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-logo">
+        <div class="admin-logo-mark">
+          <div class="mark">EL</div>
+          <span>Elektro-Link</span>
+        </div>
+        <p>Admin Panel</p>
+      </div>
+      <div class="admin-nav">
+        <button class="admin-nav-item active" onclick="showAdminPage('dashboard',this)">
+          <span class="nav-icon">📊</span> Dashboard
+        </button>
+        <button class="admin-nav-item" onclick="showAdminPage('inquiries',this)">
+          <span class="nav-icon">📥</span> Anfragen
+          <span class="admin-badge" id="nav-badge">0</span>
+        </button>
+        <button class="admin-nav-item" onclick="showAdminPage('orders',this)">
+          <span class="nav-icon">📋</span> Aufträge
+        </button>
+        <button class="admin-nav-item" onclick="showAdminPage('customers',this)">
+          <span class="nav-icon">👤</span> Kunden
+        </button>
+      </div>
+      <div class="admin-footer-nav">
+        <button class="admin-nav-item" onclick="adminLogout()">
+          <span class="nav-icon">🚪</span> Abmelden
+        </button>
+        <button class="admin-nav-item" onclick="closeAdmin()">
+          <span class="nav-icon">🌐</span> Zur Website
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- DASHBOARD -->
+      <div class="admin-page active" id="page-dashboard">
+        <div class="admin-topbar">
+          <h1>DASHBOARD</h1>
+          <div class="admin-topbar-right">
+            <span style="font-size:12px;color:#5A5550;" id="admin-date"></span>
+          </div>
+        </div>
+        <div class="stats-grid" id="stats-grid"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div class="admin-section">
+            <div class="admin-section-header">
+              <h2>Neueste Anfragen</h2>
+              <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="showAdminPage('inquiries',null)">Alle ansehen</button>
+            </div>
+            <div id="dash-recent-inquiries"></div>
+          </div>
+          <div class="admin-section">
+            <div class="admin-section-header">
+              <h2>Offene Aufträge</h2>
+              <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="showAdminPage('orders',null)">Alle ansehen</button>
+            </div>
+            <div id="dash-open-orders"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INQUIRIES -->
+      <div class="admin-page" id="page-inquiries">
+        <div class="admin-topbar">
+          <h1>ANFRAGEN</h1>
+        </div>
+        <div class="admin-section">
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('inq','all',this)">Alle</button>
+            <button class="tab-btn" onclick="switchTab('inq','new',this)">Neu</button>
+            <button class="tab-btn" onclick="switchTab('inq','read',this)">Gelesen</button>
+            <button class="tab-btn" onclick="switchTab('inq','replied',this)">Beantwortet</button>
+          </div>
+          <div class="filter-bar">
+            <input type="text" id="inq-search" placeholder="Suche nach Name, E-Mail..." oninput="renderInquiries()"/>
+            <select id="inq-service-filter" onchange="renderInquiries()">
+              <option value="">Alle Leistungen</option>
+              <option>Elektroinstallation</option>
+              <option>Photovoltaik</option>
+              <option>E-Mobilität / Wallbox</option>
+              <option>Zähler & Schaltanlagen</option>
+              <option>Netzwerk & Kommunikation</option>
+              <option>Beleuchtungslösungen</option>
+              <option>Sonstiges</option>
+            </select>
+          </div>
+          <div id="inq-tab-all" class="tab-content active">
+            <table class="admin-table" id="inq-table">
+              <thead><tr><th>Name</th><th>E-Mail</th><th>Leistung</th><th>Datum</th><th>Status</th><th>Aktion</th></tr></thead>
+              <tbody id="inq-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="admin-page" id="page-orders">
+        <div class="admin-topbar">
+          <h1>AUFTRÄGE</h1>
+          <button class="admin-btn admin-btn-gold" onclick="openNewOrderModal()">+ Neuer Auftrag</button>
+        </div>
+        <div class="admin-section">
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('ord','all',this)">Alle</button>
+            <button class="tab-btn" onclick="switchTab('ord','pending',this)">Ausstehend</button>
+            <button class="tab-btn" onclick="switchTab('ord','done',this)">Abgeschlossen</button>
+          </div>
+          <div class="filter-bar">
+            <input type="text" id="ord-search" placeholder="Suche nach Kunde, Leistung..." oninput="renderOrders()"/>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>#</th><th>Kunde</th><th>Leistung</th><th>Erstellt</th><th>Status</th><th>Aktion</th></tr></thead>
+            <tbody id="ord-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CUSTOMERS -->
+      <div class="admin-page" id="page-customers">
+        <div class="admin-topbar">
+          <h1>KUNDEN</h1>
+        </div>
+        <div class="admin-section">
+          <div class="filter-bar">
+            <input type="text" id="cust-search" placeholder="Suche nach Name, E-Mail, Telefon..." oninput="renderCustomers()"/>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>E-Mail</th><th>Telefon</th><th>Anfragen</th><th>Letzte Anfrage</th><th>Aktion</th></tr></thead>
+            <tbody id="cust-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- admin-content -->
+  </div><!-- admin-main -->
+</div><!-- admin-panel -->
+
+<!-- DETAIL MODAL -->
+<div class="detail-modal" id="detail-modal">
+  <div class="detail-box" id="detail-box">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <div id="detail-content"></div>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notification"></div>
+
+<!-- ADMIN TRIGGER (hidden link in footer) -->
+<div style="position:fixed;bottom:8px;left:8px;z-index:50;">
+  <button onclick="openAdmin()" style="background:none;border:none;cursor:pointer;padding:6px;opacity:0.2;font-size:11px;color:var(--text-dim);font-family:'DM Sans',sans-serif;" title="Admin">⚙</button>
+</div>
+
+<script>
+// ========== DATA STORE ==========
+const DB_KEY = 'elektrolink_admin';
+
+function loadDB() {
+  try { return JSON.parse(localStorage.getItem(DB_KEY)) || getDefaultDB(); }
+  catch(e) { return getDefaultDB(); }
+}
+function saveDB(db) { localStorage.setItem(DB_KEY, JSON.stringify(db)); }
+
+function getDefaultDB() {
+  return {
+    inquiries: [
+      { id: 'INQ001', vorname:'Thomas', nachname:'Müller', email:'t.mueller@example.de', telefon:'0711 123456', service:'Photovoltaik', nachricht:'Wir möchten eine PV-Anlage auf unserem Einfamilienhaus installieren lassen. Dachfläche ca. 60m².', datum:'2025-06-01', status:'new' },
+      { id: 'INQ002', vorname:'Sandra', nachname:'Weber', email:'s.weber@example.de', telefon:'07161 789012', service:'E-Mobilität / Wallbox', nachricht:'Benötige eine Wallbox für mein Elektroauto, Garageninstallation.', datum:'2025-05-29', status:'read' },
+      { id: 'INQ003', vorname:'Klaus', nachname:'Hoffmann', email:'k.hoffmann@example.de', telefon:'', service:'Elektroinstallation', nachricht:'Renovierung Badezimmer, neue Steckdosen und Lichtinstallation benötigt.', datum:'2025-05-27', status:'replied' },
+    ],
+    orders: [
+      { id: 'ORD001', kunde:'Thomas Müller', leistung:'Photovoltaik 8kWp', datum:'2025-06-02', status:'pending', notiz:'Terminvereinbarung ausstehend' },
+      { id: 'ORD002', kunde:'Familie Bauer', leistung:'Elektroinstallation Neubau', datum:'2025-05-20', status:'done', notiz:'Abgenommen am 28.05.2025' },
+      { id: 'ORD003', kunde:'Autohaus Göppingen GmbH', leistung:'E-Mobilität 4x Wallbox', datum:'2025-05-15', status:'pending', notiz:'Materialbestellung läuft' },
+    ]
+  };
+}
+
+let db = loadDB();
+let currentInqTab = 'all';
+let currentOrdTab = 'all';
+
+// ========== PUBLIC SITE JS ==========
+function toggleMobileMenu() {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '68px';
+  links.style.left = '0';
+  links.style.right = '0';
+  links.style.background = 'var(--dark2)';
+  links.style.padding = '20px 4vw';
+  links.style.borderBottom = '0.5px solid var(--border)';
+}
+
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  nav.style.background = window.scrollY > 50 ? 'rgba(15,15,15,0.98)' : 'rgba(15,15,15,0.92)';
+});
+
+function submitContactForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  const entry = {
+    id: 'INQ' + String(db.inquiries.length + 1).padStart(3,'0'),
+    vorname: data.get('vorname'),
+    nachname: data.get('nachname'),
+    email: data.get('email'),
+    telefon: data.get('telefon') || '',
+    service: data.get('service') || 'Sonstiges',
+    nachricht: data.get('nachricht'),
+    datum: new Date().toISOString().split('T')[0],
+    status: 'new'
+  };
+  db.inquiries.unshift(entry);
+  saveDB(db);
+  form.reset();
+  document.getElementById('form-success').style.display = 'block';
+  showNotification('Anfrage erfolgreich gesendet!');
+  setTimeout(()=>{ document.getElementById('form-success').style.display='none'; }, 5000);
+}
+
+// ========== ADMIN JS ==========
+function openAdmin() {
+  document.getElementById('admin-panel').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeAdmin() {
+  document.getElementById('admin-panel').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function doLogin() {
+  const u = document.getElementById('login-user').value;
+  const p = document.getElementById('login-pass').value;
+  if(u === 'admin' && p === 'admin123') {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-main').style.display = 'flex';
+    initAdmin();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+function adminLogout() {
+  document.getElementById('admin-login').style.display = 'flex';
+  document.getElementById('admin-main').style.display = 'none';
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+  document.getElementById('login-error').style.display = 'none';
+}
+function initAdmin() {
+  db = loadDB();
+  document.getElementById('admin-date').textContent = new Date().toLocaleDateString('de-DE',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  renderDashboard();
+  renderInquiries();
+  renderOrders();
+  renderCustomers();
+  updateNavBadge();
+}
+function updateNavBadge() {
+  const newCount = db.inquiries.filter(i=>i.status==='new').length;
+  document.getElementById('nav-badge').textContent = newCount;
+  document.getElementById('nav-badge').style.display = newCount > 0 ? 'inline-block' : 'none';
+}
+function showAdminPage(page, btn) {
+  document.querySelectorAll('.admin-page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.admin-nav-item').forEach(i=>i.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  else {
+    const map = {dashboard:0,inquiries:1,orders:2,customers:3};
+    document.querySelectorAll('.admin-nav-item')[map[page]]?.classList.add('active');
+  }
+}
+
+// DASHBOARD
+function renderDashboard() {
+  const newInq = db.inquiries.filter(i=>i.status==='new').length;
+  const totalInq = db.inquiries.length;
+  const pendingOrd = db.orders.filter(o=>o.status==='pending').length;
+  const doneOrd = db.orders.filter(o=>o.status==='done').length;
+  document.getElementById('stats-grid').innerHTML = `
+    <div class="stat-card gold">
+      <div class="stat-card-label">Neue Anfragen</div>
+      <div class="stat-card-value">${newInq}</div>
+      <div class="stat-card-sub">Ungelesen</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Gesamt Anfragen</div>
+      <div class="stat-card-value">${totalInq}</div>
+      <div class="stat-card-sub">Alle Eingänge</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Offene Aufträge</div>
+      <div class="stat-card-value">${pendingOrd}</div>
+      <div class="stat-card-sub">In Bearbeitung</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Abgeschlossen</div>
+      <div class="stat-card-value">${doneOrd}</div>
+      <div class="stat-card-sub">Aufträge</div>
+    </div>`;
+
+  const recent = db.inquiries.slice(0,5);
+  const riHtml = recent.length ? `<table class="admin-table"><thead><tr><th>Name</th><th>Leistung</th><th>Status</th></tr></thead><tbody>` +
+    recent.map(i=>`<tr style="cursor:pointer;" onclick="openInquiryDetail('${i.id}')"><td>${i.vorname} ${i.nachname}</td><td>${i.service||'–'}</td><td>${statusBadge(i.status)}</td></tr>`).join('') +
+    `</tbody></table>` : '<div class="empty-state">Keine Anfragen</div>';
+  document.getElementById('dash-recent-inquiries').innerHTML = riHtml;
+
+  const pending = db.orders.filter(o=>o.status==='pending').slice(0,5);
+  const poHtml = pending.length ? `<table class="admin-table"><thead><tr><th>Kunde</th><th>Leistung</th><th>Status</th></tr></thead><tbody>` +
+    pending.map(o=>`<tr style="cursor:pointer;" onclick="openOrderDetail('${o.id}')"><td>${o.kunde}</td><td>${o.leistung}</td><td>${orderStatusBadge(o.status)}</td></tr>`).join('') +
+    `</tbody></table>` : '<div class="empty-state">Keine offenen Aufträge</div>';
+  document.getElementById('dash-open-orders').innerHTML = poHtml;
+}
+
+// INQUIRIES
+function renderInquiries() {
+  const search = (document.getElementById('inq-search')?.value||'').toLowerCase();
+  const svc = document.getElementById('inq-service-filter')?.value||'';
+  let list = db.inquiries;
+  if(currentInqTab!=='all') list = list.filter(i=>i.status===currentInqTab);
+  if(search) list = list.filter(i=>(i.vorname+' '+i.nachname+' '+i.email).toLowerCase().includes(search));
+  if(svc) list = list.filter(i=>i.service===svc);
+  const tbody = document.getElementById('inq-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = list.length ? list.map(i=>`
+    <tr>
+      <td>${i.vorname} ${i.nachname}</td>
+      <td style="color:var(--text-muted);">${i.email}</td>
+      <td>${i.service||'–'}</td>
+      <td style="color:var(--text-muted);font-size:12px;">${formatDate(i.datum)}</td>
+      <td>${statusBadge(i.status)}</td>
+      <td>
+        <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="openInquiryDetail('${i.id}')">Details</button>
+      </td>
+    </tr>`).join('') : `<tr><td colspan="6"><div class="empty-state">Keine Anfragen gefunden</div></td></tr>`;
+}
+function switchTab(type, tab, btn) {
+  if(type==='inq') { currentInqTab=tab; renderInquiries(); }
+  else if(type==='ord') { currentOrdTab=tab; renderOrders(); }
+  btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function openInquiryDetail(id) {
+  const i = db.inquiries.find(x=>x.id===id);
+  if(!i) return;
+  if(i.status==='new') { i.status='read'; saveDB(db); renderInquiries(); renderDashboard(); updateNavBadge(); }
+  document.getElementById('detail-content').innerHTML = `
+    <h3>Anfrage ${i.id}</h3>
+    <div class="detail-row"><span>Name</span><span>${i.vorname} ${i.nachname}</span></div>
+    <div class="detail-row"><span>E-Mail</span><span>${i.email}</span></div>
+    <div class="detail-row"><span>Telefon</span><span>${i.telefon||'–'}</span></div>
+    <div class="detail-row"><span>Leistung</span><span>${i.service||'–'}</span></div>
+    <div class="detail-row"><span>Datum</span><span>${formatDate(i.datum)}</span></div>
+    <div class="detail-row"><span>Status</span><span>${statusBadge(i.status)}</span></div>
+    <div class="detail-msg">${i.nachricht}</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+      <button class="admin-btn admin-btn-gold" onclick="setInqStatus('${i.id}','replied')">Als beantwortet markieren</button>
+      <button class="admin-btn admin-btn-outline" onclick="convertToOrder('${i.id}')">→ Auftrag erstellen</button>
+      <button class="admin-btn admin-btn-danger" onclick="deleteInquiry('${i.id}')">Löschen</button>
+    </div>`;
+  document.getElementById('detail-modal').classList.add('open');
+}
+function setInqStatus(id, status) {
+  const i = db.inquiries.find(x=>x.id===id);
+  if(i) { i.status=status; saveDB(db); renderInquiries(); renderDashboard(); updateNavBadge(); closeModal(); showNotification('Status aktualisiert'); }
+}
+function deleteInquiry(id) {
+  if(!confirm('Anfrage wirklich löschen?')) return;
+  db.inquiries = db.inquiries.filter(x=>x.id!==id);
+  saveDB(db); renderInquiries(); renderDashboard(); updateNavBadge(); closeModal(); showNotification('Anfrage gelöscht');
+}
+function convertToOrder(inqId) {
+  const i = db.inquiries.find(x=>x.id===inqId);
+  if(!i) return;
+  const order = {
+    id: 'ORD' + String(db.orders.length+1).padStart(3,'0'),
+    kunde: i.vorname+' '+i.nachname,
+    leistung: i.service||'Sonstiges',
+    datum: new Date().toISOString().split('T')[0],
+    status: 'pending',
+    notiz: 'Erstellt aus Anfrage '+inqId
+  };
+  db.orders.unshift(order);
+  saveDB(db); renderOrders(); renderDashboard(); closeModal(); showNotification('Auftrag erstellt: '+order.id);
+}
+
+// ORDERS
+function renderOrders() {
+  const search = (document.getElementById('ord-search')?.value||'').toLowerCase();
+  let list = db.orders;
+  if(currentOrdTab==='pending') list = list.filter(o=>o.status==='pending');
+  else if(currentOrdTab==='done') list = list.filter(o=>o.status==='done');
+  if(search) list = list.filter(o=>(o.kunde+' '+o.leistung).toLowerCase().includes(search));
+  const tbody = document.getElementById('ord-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = list.length ? list.map(o=>`
+    <tr>
+      <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);">${o.id}</td>
+      <td>${o.kunde}</td>
+      <td style="color:var(--text-muted);">${o.leistung}</td>
+      <td style="color:var(--text-muted);font-size:12px;">${formatDate(o.datum)}</td>
+      <td>${orderStatusBadge(o.status)}</td>
+      <td>
+        <button class="admin-btn admin-btn-outline admin-btn-sm" onclick="openOrderDetail('${o.id}')">Details</button>
+      </td>
+    </tr>`).join('') : `<tr><td colspan="6"><div class="empty-state">Keine Aufträge gefunden</div></td></tr>`;
+}
+function openOrderDetail(id) {
+  const o = db.orders.find(x=>x.id===id);
+  if(!o) return;
+  document.getElementById('detail-content').innerHTML = `
+    <h3>Auftrag ${o.id}</h3>
+    <div class="detail-row"><span>Kunde</span><span>${o.kunde}</span></div>
+    <div class="detail-row"><span>Leistung</span><span>${o.leistung}</span></div>
+    <div class="detail-row"><span>Erstellt</span><span>${formatDate(o.datum)}</span></div>
+    <div class="detail-row"><span>Status</span><span>${orderStatusBadge(o.status)}</span></div>
+    <div class="detail-msg">${o.notiz||'–'}</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+      ${o.status==='pending'?`<button class="admin-btn admin-btn-gold" onclick="setOrderStatus('${o.id}','done')">Als abgeschlossen markieren</button>`:''}
+      ${o.status==='done'?`<button class="admin-btn admin-btn-outline" onclick="setOrderStatus('${o.id}','pending')">Wieder öffnen</button>`:''}
+      <button class="admin-btn admin-btn-danger" onclick="deleteOrder('${o.id}')">Löschen</button>
+    </div>`;
+  document.getElementById('detail-modal').classList.add('open');
+}
+function setOrderStatus(id, status) {
+  const o = db.orders.find(x=>x.id===id);
+  if(o) { o.status=status; saveDB(db); renderOrders(); renderDashboard(); closeModal(); showNotification('Auftragsstatus aktualisiert'); }
+}
+function deleteOrder(id) {
+  if(!confirm('Auftrag wirklich löschen?')) return;
+  db.orders = db.orders.filter(x=>x.id!==id);
+  saveDB(db); renderOrders(); renderDashboard(); closeModal(); showNotification('Auftrag gelöscht');
+}
+function openNewOrderModal() {
+  document.getElementById('detail-content').innerHTML = `
+    <h3>Neuer Auftrag</h3>
+    <div class="form-group" style="margin-bottom:14px;"><label class="form-group label" style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#5A5550;display:block;margin-bottom:8px;">Kunde</label>
+    <input type="text" id="new-ord-kunde" style="width:100%;background:#0F0F0F;border:0.5px solid rgba(255,255,255,0.1);color:#F0EDE6;padding:10px;font-family:'DM Sans',sans-serif;font-size:14px;" placeholder="Kundenname"/></div>
+    <div class="form-group" style="margin-bottom:14px;"><label style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#5A5550;display:block;margin-bottom:8px;">Leistung</label>
+    <input type="text" id="new-ord-leistung" style="width:100%;background:#0F0F0F;border:0.5px solid rgba(255,255,255,0.1);color:#F0EDE6;padding:10px;font-family:'DM Sans',sans-serif;font-size:14px;" placeholder="Leistungsbeschreibung"/></div>
+    <div class="form-group" style="margin-bottom:14px;"><label style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#5A5550;display:block;margin-bottom:8px;">Notiz</label>
+    <textarea id="new-ord-notiz" style="width:100%;background:#0F0F0F;border:0.5px solid rgba(255,255,255,0.1);color:#F0EDE6;padding:10px;font-family:'DM Sans',sans-serif;font-size:14px;resize:vertical;min-height:80px;" placeholder="Interne Notiz..."></textarea></div>
+    <button class="admin-btn admin-btn-gold" onclick="createNewOrder()" style="margin-top:8px;">Auftrag anlegen</button>`;
+  document.getElementById('detail-modal').classList.add('open');
+}
+function createNewOrder() {
+  const kunde = document.getElementById('new-ord-kunde').value.trim();
+  const leistung = document.getElementById('new-ord-leistung').value.trim();
+  const notiz = document.getElementById('new-ord-notiz').value.trim();
+  if(!kunde||!leistung) { alert('Kunde und Leistung sind Pflichtfelder.'); return; }
+  const order = { id:'ORD'+String(db.orders.length+1).padStart(3,'0'), kunde, leistung, datum:new Date().toISOString().split('T')[0], status:'pending', notiz };
+  db.orders.unshift(order);
+  saveDB(db); renderOrders(); renderDashboard(); closeModal(); showNotification('Auftrag '+order.id+' erstellt');
+}
+
+// CUSTOMERS
+function renderCustomers() {
+  const search = (document.getElementById('cust-search')?.value||'').toLowerCase();
+  const map = {};
+  db.inquiries.forEach(i=>{ const key=i.email; if(!map[key]) map[key]={vorname:i.vorname,nachname:i.nachname,email:i.email,telefon:i.telefon,count:0,last:i.datum}; map[key].count++; if(i.datum>map[key].last) map[key].last=i.datum; });
+  let list = Object.values(map);
+  if(search) list = list.filter(c=>(c.vorname+' '+c.nachname+' '+c.email+' '+c.telefon).toLowerCase().includes(search));
+  const tbody = document.getElementById('cust-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = list.length ? list.map(c=>`
+    <tr>
+      <td>${c.vorname} ${c.nachname}</td>
+      <td style="color:var(--text-muted);">${c.email}</td>
+      <td style="color:var(--text-muted);">${c.telefon||'–'}</td>
+      <td style="color:var(--gold);font-family:'DM Mono',monospace;">${c.count}</td>
+      <td style="color:var(--text-muted);font-size:12px;">${formatDate(c.last)}</td>
+      <td><button class="admin-btn admin-btn-outline admin-btn-sm" onclick="filterInquiriesByCustomer('${c.email}')">Anfragen</button></td>
+    </tr>`).join('') : `<tr><td colspan="6"><div class="empty-state">Keine Kunden gefunden</div></td></tr>`;
+}
+function filterInquiriesByCustomer(email) {
+  showAdminPage('inquiries', document.querySelectorAll('.admin-nav-item')[1]);
+  document.getElementById('inq-search').value = email;
+  renderInquiries();
+}
+
+// HELPERS
+function statusBadge(s) {
+  const map = { new:'<span class="status-badge status-new">Neu</span>', read:'<span class="status-badge status-read">Gelesen</span>', replied:'<span class="status-badge status-replied">Beantwortet</span>' };
+  return map[s]||s;
+}
+function orderStatusBadge(s) {
+  const map = { pending:'<span class="status-badge status-pending">Ausstehend</span>', done:'<span class="status-badge status-done">Abgeschlossen</span>' };
+  return map[s]||s;
+}
+function formatDate(d) {
+  if(!d) return '–';
+  const [y,m,day] = d.split('-');
+  return `${day}.${m}.${y}`;
+}
+function closeModal() { document.getElementById('detail-modal').classList.remove('open'); }
+function showNotification(msg) {
+  const n = document.getElementById('notification');
+  n.textContent = msg; n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'), 3000);
+}
+document.getElementById('detail-modal').addEventListener('click', e => { if(e.target===document.getElementById('detail-modal')) closeModal(); });
+
+function showImprint() {
+  alert('Impressum\n\nElektro-Link\nRobert-Bosch-Str. 7\n73037 Göppingen\n\nTel: 07161 74228\nE-Mail: info@linkelektro.de\n\nVerantwortlich: Geschäftsführer Elektro-Link');
+}
+function showPrivacy() {
+  alert('Datenschutzerklärung\n\nDie erhobenen Daten werden ausschließlich zur Kontaktaufnahme verwendet und nicht an Dritte weitergegeben.\n\nAlle Rechte vorbehalten. Weitere Informationen erhalten Sie unter info@linkelektro.de');
+}
+</script>
+</body>
+</html>
